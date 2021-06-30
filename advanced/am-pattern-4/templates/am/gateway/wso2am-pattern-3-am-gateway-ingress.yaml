@@ -12,19 +12,24 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-apiVersion: v1
-kind: PersistentVolumeClaim
+apiVersion: extensions/v1beta1
+kind: Ingress
 metadata:
-  name: {{ template "am-pattern-3.resource.prefix" . }}-am-gateway-shared-synapse-configs-volume-claim
+  name: {{ template "am-pattern-3.resource.prefix" . }}-am-gateway-ingress
   namespace : {{ .Release.Namespace }}
+{{- if .Values.wso2.deployment.am.gateway.ingress.annotations }}
+  annotations:
+{{ toYaml .Values.wso2.deployment.am.gateway.ingress.annotations | indent 4 }}
+{{- end }}
 spec:
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: {{ .Values.wso2.deployment.persistentRuntimeArtifacts.sharedArtifacts.capacity.synapseConfigs }}
-  storageClassName: ""
- # storageClassName: {{ .Values.wso2.deployment.persistentRuntimeArtifacts.storageClass }}
-  selector:
-    matchLabels:
-      purpose: {{ template "am-pattern-3.resource.prefix" . }}-am-shared-synapse-configs
+  tls:
+  - hosts:
+    - {{ .Values.wso2.deployment.am.gateway.ingress.hostname }}
+  rules:
+  - host: {{ .Values.wso2.deployment.am.gateway.ingress.hostname }}
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: {{ template "am-pattern-3.resource.prefix" . }}-am-gateway-service
+          servicePort: 8243

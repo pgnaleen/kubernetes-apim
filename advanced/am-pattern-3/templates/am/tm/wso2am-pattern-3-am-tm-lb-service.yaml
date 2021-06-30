@@ -1,0 +1,66 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    cloud.google.com/neg: '{"ingress":true}'
+  name: {{ template "am-pattern-3.resource.prefix" . }}-am-tm-lb-service-statefulset-0
+  namespace: {{ .Release.Namespace }}
+  labels:
+    deployment: {{ template "am-pattern-3.resource.prefix" . }}-am-tm
+    statefulset.kubernetes.io/pod-name: {{ template "am-pattern-3.resource.prefix" . }}-am-tm-statefulset-0
+spec:
+  type: LoadBalancer
+  selector:
+    deployment: {{ template "am-pattern-3.resource.prefix" . }}-am-tm
+    statefulset.kubernetes.io/pod-name: {{ template "am-pattern-3.resource.prefix" . }}-am-tm-statefulset-0
+  ports:
+  - name: binary
+    protocol: TCP
+    port: 9611
+    targetPort: 9611
+  - name: binarysecure
+    protocol: TCP
+    port: 9711
+    targetPort: 9711
+  - name: jms
+    protocol: TCP
+    port: 5672
+    targetPort: 5672
+  - name: https
+    protocol: TCP
+    port: 9443
+    targetPort: 9443
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    cloud.google.com/neg: '{"ingress":true}'
+  name: {{ template "am-pattern-3.resource.prefix" . }}-am-tm-lb-service-statefulset-1
+  namespace: {{ .Release.Namespace }}
+  labels:
+    deployment: {{ template "am-pattern-3.resource.prefix" . }}-am-tm
+    statefulset.kubernetes.io/pod-name: {{ template "am-pattern-3.resource.prefix" . }}-am-tm-statefulset-1
+spec:
+  type: LoadBalancer
+  selector:
+    deployment: {{ template "am-pattern-3.resource.prefix" . }}-am-tm
+    statefulset.kubernetes.io/pod-name: {{ template "am-pattern-3.resource.prefix" . }}-am-tm-statefulset-1
+  ports:
+  - name: binary
+    protocol: TCP
+    port: 9611
+    targetPort: 9611
+  - name: binarysecure
+    protocol: TCP
+    port: 9711
+    targetPort: 9711
+  - name: jms
+    protocol: TCP
+    port: 5672
+    targetPort: 5672
+  - name: https
+    protocol: TCP
+    port: 9443
+    targetPort: 9443

@@ -12,7 +12,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-dependencies:
-  - name: mysql
-    version: "1.6.9"
-    repository: "https://helm.wso2.com"
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "am-pattern-3.resource.prefix" . }}-km-lb-service
+spec:
+  type: LoadBalancer
+  # label keys and values that must match in order to receive traffic for this service
+  selector:
+    deployment: {{ template "am-pattern-3.resource.prefix" . }}-km
+  sessionAffinity: ClientIP
+  ports:
+  # ports that this service should serve on
+  - name: servlet-https
+    protocol: TCP
+    port: 9443

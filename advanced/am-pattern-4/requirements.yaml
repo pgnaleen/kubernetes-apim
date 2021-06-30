@@ -12,19 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: {{ template "am-pattern-3.resource.prefix" . }}-am-gateway-shared-synapse-configs-volume-claim
-  namespace : {{ .Release.Namespace }}
-spec:
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: {{ .Values.wso2.deployment.persistentRuntimeArtifacts.sharedArtifacts.capacity.synapseConfigs }}
-  storageClassName: ""
- # storageClassName: {{ .Values.wso2.deployment.persistentRuntimeArtifacts.storageClass }}
-  selector:
-    matchLabels:
-      purpose: {{ template "am-pattern-3.resource.prefix" . }}-am-shared-synapse-configs
+dependencies:
+  - name: nfs-server-provisioner
+    version: "1.1.0"
+    repository: "https://helm.wso2.com"
+    condition: wso2.deployment.dependencies.nfsServerProvisioner

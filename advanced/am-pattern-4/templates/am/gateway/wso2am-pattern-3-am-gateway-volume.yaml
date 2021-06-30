@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ template "am-pattern-3.resource.prefix" . }}-am-shared-synapse-configs
+  labels:
+    purpose: {{ template "am-pattern-3.resource.prefix" . }}-am-shared-synapse-configs
+spec:
+  capacity:
+    storage: {{ .Values.wso2.deployment.persistentRuntimeArtifacts.sharedArtifacts.capacity.synapseConfigs }}
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  nfs:
+    server: {{ required "A valid .Values.wso2.deployment.persistentRuntimeArtifacts.nfsServerIP entry required!" .Values.wso2.deployment.persistentRuntimeArtifacts.nfsServerIP }}
+    path: {{ required "A valid .Values.wso2.deployment.am.gateway.sharedAPIMSynapseConfigsPath entry required!" .Values.wso2.deployment.am.gateway.sharedAPIMSynapseConfigsPath }}

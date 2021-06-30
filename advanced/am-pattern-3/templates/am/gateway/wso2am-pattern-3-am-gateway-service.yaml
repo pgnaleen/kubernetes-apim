@@ -17,8 +17,12 @@ kind: Service
 metadata:
   name: {{ template "am-pattern-3.resource.prefix" . }}-am-gateway-service
   namespace : {{ .Release.Namespace }}
+  annotations:
+    networking.gke.io/internal-load-balancer-allow-global-access: "true"
+    networking.gke.io/load-balancer-type: Internal
 spec:
-  # label keys and values that must match in order to receive traffic for this service
+  type: LoadBalancer
+  # label keys and values that must match in order to receive traffic for this service  
   selector:
     deployment: {{ template "am-pattern-3.resource.prefix" . }}-am-gateway
   ports:
