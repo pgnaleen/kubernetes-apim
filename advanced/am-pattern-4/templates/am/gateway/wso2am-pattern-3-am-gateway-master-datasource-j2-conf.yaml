@@ -52,9 +52,9 @@ data:
                 </jndiConfig>
                 <definition type="RDBMS">
                     <configuration>
-                        <url>jdbc:mysql://35.198.231.147:3306/shared_db1?useSSL=false&amp;autoReconnect=true&amp;requireSSL=false&amp;verifyServerCertificate=false</url>
+                        <url>jdbc:mysql://35.223.49.9:3306/shared_db1?useSSL=false&amp;autoReconnect=true&amp;requireSSL=false&amp;verifyServerCertificate=false</url>
                         <username>root</username>
-                        <password>root</password>
+                        <password>Ut9_=_Piuy67tTuhMjg</password>
                         <driverClassName>com.mysql.cj.jdbc.Driver</driverClassName>
                         <jdbcInterceptors>org.apache.tomcat.jdbc.pool.interceptor.SlowQueryReport(threshold=1)</jdbcInterceptors>
                         <validationQuery>SELECT 1</validationQuery>
@@ -70,9 +70,9 @@ data:
                 </jndiConfig>
                 <definition type="RDBMS">
                     <configuration>
-                        <url>jdbc:mysql://35.198.231.147:3306/am_db1?useSSL=false&amp;autoReconnect=true&amp;requireSSL=false&amp;verifyServerCertificate=false</url>
+                        <url>jdbc:mysql://35.223.49.9:3306/am_db1?useSSL=false&amp;autoReconnect=true&amp;requireSSL=false&amp;verifyServerCertificate=false</url>
                         <username>root</username>
-                        <password>root</password>
+                        <password>Ut9_=_Piuy67tTuhMjg</password>
                         <driverClassName>com.mysql.cj.jdbc.Driver</driverClassName>
                         <jdbcInterceptors>org.apache.tomcat.jdbc.pool.interceptor.SlowQueryReport(threshold=1)</jdbcInterceptors>
                         <validationQuery>SELECT 1</validationQuery>

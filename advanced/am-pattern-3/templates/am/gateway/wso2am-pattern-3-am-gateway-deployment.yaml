@@ -79,7 +79,7 @@ spec:
               - /bin/sh
               - -c
               - nc -z localhost 8243
-          initialDelaySeconds: 1000
+          initialDelaySeconds: 100
           periodSeconds: {{ .Values.wso2.deployment.am.livenessProbe.periodSeconds }}
         readinessProbe:
           exec:
@@ -87,7 +87,7 @@ spec:
               - /bin/sh
               - -c
               - nc -z localhost 8243
-          initialDelaySeconds: 1000
+          initialDelaySeconds: 100
           periodSeconds: {{ .Values.wso2.deployment.am.readinessProbe.periodSeconds }}
         lifecycle:
           preStop:

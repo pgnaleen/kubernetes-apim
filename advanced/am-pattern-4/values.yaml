@@ -87,13 +87,13 @@ wso2:
       # Indicates whether the container is running
       livenessProbe:
         # Number of seconds after the container has started before liveness probes are initiated
-        initialDelaySeconds: 1000
+        initialDelaySeconds: 180
         # How often (in seconds) to perform the probe
         periodSeconds: 50
         # Indicates whether the container is ready to service requests
       readinessProbe:
         # Number of seconds after the container has started before readiness probes are initiated
-        initialDelaySeconds: 1000
+        initialDelaySeconds: 180
         # How often (in seconds) to perform the probe
         periodSeconds: 50
 
